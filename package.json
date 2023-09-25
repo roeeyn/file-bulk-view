@@ -1,0 +1,17 @@
+{
+  "name": "file-bulk-view",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "roeeyn",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.246",
+    "vite": "^4.4.9",
+    "vite-plugin-chrome-extension": "^0.0.7"
+  }
+}
