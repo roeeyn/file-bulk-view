@@ -1,5 +1,7 @@
 # File Bulk View Files For GitHub PR Reviews
 
+![example](https://media.giphy.com/media/1tdWD4HIXjqngNr8iE/giphy.gif)
+
 With this Chrome extension, you can conveniently mark multiple files as viewed or unviewed within a GitHub PR review, all with a single click.
 
 ## Description
