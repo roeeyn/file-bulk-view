@@ -10,7 +10,7 @@
     "content_scripts": [
         {
             "js": [
-                "content-scripts/injectExtensionButton.ts"
+                "contentScripts/injectExtensionButton.ts"
             ],
             "matches": [
                 "https://github.com/*pull*files"

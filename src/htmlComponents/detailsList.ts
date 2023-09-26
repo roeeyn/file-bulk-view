@@ -1,83 +1,100 @@
-const createItemButton = (name: string, callback: () => any): HTMLLabelElement => {
-    const btnLabel = document.createElement('label')
-    btnLabel.classList.add('SelectMenu-item')
+import { checkElements } from "@/lib";
 
-    const btn = document.createElement('input')
-    btn.type = 'button'
-    btn.value = name
-    btn.classList.add('btn', 'btn-sm')
-    btnLabel.appendChild(btn)
+const createItemButton = (
+  name: string,
+  callback: () => any
+): HTMLLabelElement => {
+  const btnLabel = document.createElement("label");
+  btnLabel.classList.add("SelectMenu-item");
 
-    btn.addEventListener('click', callback)
+  const btn = document.createElement("input");
+  btn.type = "button";
+  btn.value = name;
+  btn.classList.add("btn", "btn-sm");
+  btnLabel.appendChild(btn);
 
-    return btnLabel
-}
+  btn.addEventListener("click", callback);
 
-const createFilterInput = (callback: (regexFilter: string) => any): HTMLLabelElement => {
-    const filterLabel = document.createElement('label')
-    filterLabel.classList.add('SelectMenu-item')
+  return btnLabel;
+};
 
-    const textInput = document.createElement('input')
-    textInput.type = 'text'
+const createFilterInput = (
+  callback: (regexFilter: string) => any
+): HTMLLabelElement => {
+  const filterLabel = document.createElement("label");
+  filterLabel.classList.add("SelectMenu-item");
 
-    const btnInput = document.createElement('input')
-    btnInput.type = 'button'
-    btnInput.value = 'Mark'
-    btnInput.classList.add('btn', 'btn-sm', 'ml-2')
+  const textInput = document.createElement("input");
+  textInput.type = "text";
 
-    filterLabel.appendChild(textInput)
-    filterLabel.appendChild(btnInput)
+  const btnInput = document.createElement("input");
+  btnInput.type = "button";
+  btnInput.value = "Mark";
+  btnInput.classList.add("btn", "btn-sm", "ml-2");
 
-    btnInput.addEventListener('click', () => {
-        callback(textInput.value)
-        textInput.value = ''
-    })
+  filterLabel.appendChild(textInput);
+  filterLabel.appendChild(btnInput);
 
-    return filterLabel
-}
+  btnInput.addEventListener("click", () => {
+    callback(textInput.value);
+    textInput.value = "";
+  });
+
+  return filterLabel;
+};
 
 const createDivider = (): HTMLDivElement => {
-    const divider = document.createElement('hr')
-    divider.classList.add('SelectMenu-divider')
-    return divider
-}
+  const divider = document.createElement("hr");
+  divider.classList.add("SelectMenu-divider");
+  return divider;
+};
 
 const createDividerLabel = (name: string): HTMLLabelElement => {
+  const label = document.createElement("label");
+  label.classList.add("SelectMenu-item");
 
-    const label = document.createElement('label')
-    label.classList.add('SelectMenu-item')
+  const span = document.createElement("span");
+  span.classList.add("color-fg-muted", "no-underline");
+  span.textContent = name;
 
-    const span = document.createElement('span')
-    span.classList.add('color-fg-muted', 'no-underline')
-    span.textContent = name
+  label.appendChild(span);
 
-    label.appendChild(span)
-
-    return label
-}
+  return label;
+};
 
 export const createButtonList = (): HTMLFormElement => {
-    const viewAllLabel = createItemButton('Mark all files as viewed', () => {
-        console.log('hola desde aca prrrroooooo')
+  const viewAllLabel = createItemButton("Mark all files as viewed", () => {
+    console.log("hola desde aca prrrroooooo");
+    checkElements({ view: true });
+  });
+
+  const unviewAllLabel = createItemButton("Mark all files as unviewed", () => {
+    checkElements({ unview: true });
+  });
+
+  const listForm = document.createElement("form");
+  listForm.appendChild(viewAllLabel);
+  listForm.appendChild(unviewAllLabel);
+
+  listForm.appendChild(
+    createDividerLabel("Mark regex matched files as viewed")
+  );
+  listForm.appendChild(createDivider());
+  listForm.appendChild(
+    createFilterInput((filter: string) => {
+      checkElements({ view: true, filters: filter });
     })
+  );
 
-    const unviewAllLabel = createItemButton('Mark all files as unviewed', () => {
-
+  listForm.appendChild(
+    createDividerLabel("Mark regex matched files as unviewed")
+  );
+  listForm.appendChild(createDivider());
+  listForm.appendChild(
+    createFilterInput((filter: string) => {
+      checkElements({ unview: true, filters: filter });
     })
+  );
 
-    const listForm = document.createElement('form')
-    listForm.appendChild(viewAllLabel)
-    listForm.appendChild(unviewAllLabel)
-    listForm.appendChild(createDividerLabel('Mark regex matched files as viewed'))
-    listForm.appendChild(createDivider())
-    listForm.appendChild(createFilterInput((filter: string) => {
-        console.log("tambien eadfadcsfa", filter)
-    }))
-    listForm.appendChild(createDividerLabel('Mark regex matched files as unviewed'))
-    listForm.appendChild(createDivider())
-    listForm.appendChild(createFilterInput((filter: string) => {
-        console.log("tambien otra cosa eadfadcsfa", filter)
-    }))
-
-    return listForm
-}
+  return listForm;
+};
