@@ -64,7 +64,6 @@ const createDividerLabel = (name: string): HTMLLabelElement => {
 
 export const createButtonList = (): HTMLFormElement => {
   const viewAllLabel = createItemButton("Mark all files as viewed", () => {
-    console.log("hola desde aca prrrroooooo");
     checkElements({ view: true });
   });
 

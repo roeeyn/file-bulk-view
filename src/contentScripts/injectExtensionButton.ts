@@ -8,8 +8,6 @@ const toolsContainer =
     ? (potentialContainers[0] as HTMLElement)
     : null;
 
-console.log("Hello from the content script", toolsContainer);
-
 if (toolsContainer) {
   const listForm = createButtonList();
   const mainDiv = createMainButton(createDetails(listForm));
