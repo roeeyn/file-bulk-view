@@ -2,10 +2,17 @@
     "manifest_version": 3,
     "name": "GitHub File Bulk View",
     "description": "View multiple files inside a GitHub review without clicking one thousand times.",
-    "version": "1.0",
+    "version": "0.0.1",
     "action": {},
     "background": {
         "service_worker": "background.ts"
+    },
+    "icons": {
+        "16": "assets/16x16.png",
+        "19": "assets/19x19.png",
+        "38": "assets/38x38.png",
+        "48": "assets/48x48.png",
+        "128": "assets/128x128.png"
     },
     "content_scripts": [
         {
